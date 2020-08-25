@@ -1,5 +1,5 @@
 import * as actionTypes from "../actions/actionTypes";
-import initialState from "./initialStage";
+import initialState from "./initialState";
 
 // gelen aksiyon hangisiyse onun payload'unu state olarak dondur.
 export default function changeCategoryReducer(state=initialState.currentCategory,action){
