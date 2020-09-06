@@ -42,6 +42,7 @@ class CategoryList extends Component {
     )
   }
 }
+
 // secili kategoriyi buraya bagla
 function mapStateToProps(state) {
   return {

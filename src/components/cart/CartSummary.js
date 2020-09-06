@@ -12,8 +12,16 @@ import {
 import { addToCart } from "../../redux/actions/cartActions"
 import * as cartActions from "../../redux/actions/cartActions"
 import { bindActionCreators } from "redux"
+import { Link } from "react-router-dom"
+import alertify from "alertifyjs"
 
 class CartSummary extends Component {
+
+  removeFromCart = (product) => {
+    this.props.removeFromCart(product);
+    alertify.error(product.props + " deleted from cart.")
+  }
+
   // sepet bosken burasi calisacak.
   // spagetti kod yazmak yerien bu yontemi seciyorum.
   renderEmpty() {
@@ -33,12 +41,13 @@ class CartSummary extends Component {
           <DropdownMenu right>
             {this.props.cart.map((cartItem) => (
               <DropdownItem key={cartItem.product.id}>
+              <Badge color="danger" onClick={ () => this.removeFromCart(cartItem.product)}>-</Badge> 
                 {cartItem.product.productName}
                 <Badge color="success">{cartItem.quantity}</Badge>
               </DropdownItem>
             ))}
             <DropdownItem divider />
-            <DropdownItem>Go To Cart</DropdownItem>
+            <DropdownItem><Link to={"/cart"}>Go To Cart</Link></DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
       </div>
